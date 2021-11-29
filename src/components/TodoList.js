@@ -8,7 +8,7 @@ const TodoList = () => {
   const { isDarkTheme, lightTheme, darkTheme, changeTheme } = useContext(ThemeContext);
   const theme = isDarkTheme ? darkTheme : lightTheme;
 
-  const { todos, addTodo, removeTodo } = useContext(TodoListContext);
+  const { todos, dispatch } = useContext(TodoListContext);
 
   const [count, setCount] = useState(0);
 
@@ -18,13 +18,12 @@ const TodoList = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    addTodo(todo);
-    setTodo('');
+    dispatch({ type: 'ADD_TODO', text: todo });
   }
 
   const handleRemoveTodo = (e) => {
     const id = e.target.id;
-    removeTodo(id);
+    dispatch({ type: 'REMOVE_TODO', id });
   }
 
 
