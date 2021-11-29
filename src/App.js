@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './components/Navbar'
+import TodoList from './components/TodoList'
+import ThemeContextProvider from './context/ThemeContext'
+import AuthContextProvider from './context/AuthContext'
+import TodoListContextProvider from './context/TodoListContext'
+import TrackList from "./components/TrackList";
+import PlayerControls from "./components/PlayerControls";
+import { MusicPlayerProvider } from "./context/MusicPlayerContext";
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className='App'>
+      <div className='ui raised very padded text container segment'>
+        <AuthContextProvider>
+          <TodoListContextProvider>
+            <ThemeContextProvider>
+              <Navbar />
+              <TodoList />
+            </ThemeContextProvider>
+          </TodoListContextProvider>
+        </AuthContextProvider>
+      </div>
+    </div >
   );
 }
 
